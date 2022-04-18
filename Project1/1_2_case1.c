@@ -1,14 +1,13 @@
-/*************************************************************/
-/* C-program for learning of single layer neural network     */
-/* based on the delta learning rule                          */
-/*                                                           */
-/*  1) Number of Inputs : N                                  */
-/*  2) Number of Output : R                                  */
-/* The last input for all neurons is always -1               */
-/*                                                           */
-/* This program is produced by Qiangfu Zhao.                 */
-/* You are free to use it for educational purpose            */
-/*************************************************************/
+/*
+
+m5261108
+KazukiFujita
+
+Team project 1: Part 2
+Case1: discrete neurons
+
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -20,7 +19,7 @@
 #define n_sample      3
 #define eta           0.5
 #define lambda        1.0
-#define desired_error 0.1
+#define desired_error 1.0
 #define sigmoid(x)    (2.0/(1.0+exp(-lambda*x))-1.0)
 #define frand()       (rand()%10000/10001.0)
 #define randomize()   srand((unsigned int)time(NULL))
@@ -42,10 +41,10 @@ void Initialization(void);
 void FindOutput(int);
 void PrintResult(void);
 
-main(){
+int main(){
   int    i,j,p,q=0;
   double Error=DBL_MAX;
-  double delta;
+  double learningSignal;
 
   Initialization();
   while(Error>desired_error){
@@ -57,13 +56,13 @@ main(){
 	      Error+=0.5*pow(d[p][i]-o[i],2.0);
       }
       for(i=0;i<R;i++){
-	      delta=(d[p][i]-o[i])*(1-o[i]*o[i])/2;
+	      learningSignal=eta*(d[p][i]-o[i]);
         for(j=0;j<N;j++){
-          w[i][j]+=eta*delta*x[p][j];
+          w[i][j]+=learningSignal*x[p][j];
         }
       }
     } 
-    printf("Error in the %d-th learning cycle=%f\n",q,Error);
+    //printf("Error in the %d-th learning cycle=%f\n",q,Error);
   }
   PrintResult();
 }
@@ -92,7 +91,8 @@ void FindOutput(int p){
     for(j=0;j<N;j++){
       temp+=w[i][j]*x[p][j];
     }
-    o[i]=sigmoid(temp);
+    if(temp>0.0)o[i]=1.00;
+    else o[i]=-1.00;
   }
 }
 
@@ -101,13 +101,30 @@ void FindOutput(int p){
 /*************************************************************/
 void PrintResult(void){
   int i,j;
-
-  printf("\n\n");
-  printf("The connection weights are:\n");
+  
+  printf("The connection weights are:\n\n");
   for(i=0;i<R;i++){
     for(j=0;j<N;j++)
       printf("%5f ",w[i][j]);
     printf("\n");
   }
   printf("\n\n");
+
+  printf("Neuron outputs:\n\n");
+  for(i=0;i<n_sample;i++){
+    printf("Input: (");
+    for(j=0;j<R;j++){
+      if(j<R-1)printf("%f,",x[i][j]);
+      else printf("%f) --> Output: ",x[i][j]);
+    }
+
+    FindOutput(i);
+
+    printf("(");
+    for(j=0;j<R;j++){
+      if(j<R-1)printf("%f,",o[j]);
+      else printf("%f",o[j]);
+    }
+    printf(")\n");
+  }
 }

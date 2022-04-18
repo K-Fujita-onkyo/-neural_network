@@ -1,14 +1,13 @@
-/*************************************************************/
-/* C-program for learning of single layer neural network     */
-/* based on the delta learning rule                          */
-/*                                                           */
-/*  1) Number of Inputs : N                                  */
-/*  2) Number of Output : R                                  */
-/* The last input for all neurons is always -1               */
-/*                                                           */
-/* This program is produced by Qiangfu Zhao.                 */
-/* You are free to use it for educational purpose            */
-/*************************************************************/
+/*
+
+m5261108
+KazukiFujita
+
+Team project 1: Part 1
+Delta learning rule
+
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -42,7 +41,7 @@ void Initialization(void);
 void FindOutput(int);
 void PrintResult(void);
 
-main(){
+int main(){
   int    i,j,p,q=0;
   double Error=DBL_MAX;
   double delta;
@@ -63,7 +62,7 @@ main(){
         }
       }
     } 
-    printf("Error in the %d-th learning cycle=%f\n",q,Error);
+    //printf("Error in the %d-th learning cycle=%f\n",q,Error);
   }
   PrintResult();
 }
@@ -101,13 +100,30 @@ void FindOutput(int p){
 /*************************************************************/
 void PrintResult(void){
   int i,j;
-
-  printf("\n\n");
-  printf("The connection weights are:\n");
+  
+  printf("The connection weights are:\n\n");
   for(i=0;i<R;i++){
     for(j=0;j<N;j++)
       printf("%5f ",w[i][j]);
     printf("\n");
   }
   printf("\n\n");
+
+  printf("Neuron outputs:\n\n");
+  for(i=0;i<n_sample;i++){
+    printf("Input: (");
+    for(j=0;j<R;j++){
+      if(j<R-1)printf("%f,",x[i][j]);
+      else printf("%f) --> Output: ",x[i][j]);
+    }
+
+    FindOutput(i);
+
+    printf("(");
+    for(j=0;j<R;j++){
+      if(j<R-1)printf("%f,",o[j]);
+      else printf("%f",o[j]);
+    }
+    printf(")\n");
+  }
 }
