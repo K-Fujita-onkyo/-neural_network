@@ -1,10 +1,12 @@
-/*************************************************************/
-/* C-program for delta-learning rule                         */
-/* Learning rule of one neuron                               */
-/*                                                           */
-/* This program is produced by Qiangfu Zhao.                 */
-/* You are free to use it for educational purpose            */
-/*************************************************************/
+/*
+
+m5261108
+KazukiFujita
+
+Team project 1: Part 1
+Perception learning rule
+
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -15,7 +17,7 @@
 #define n_sample      4
 #define eta           0.5
 #define lambda        1.0
-#define desired_error 0.01
+#define desired_error 0.1
 #define sigmoid(x)    (2.0/(1.0+exp(-lambda*x))-1.0)
 #define frand()       (rand()%10000/10001.0)
 #define randomize()   srand((unsigned int)time(NULL))
@@ -52,7 +54,7 @@ int main(){
             for(i=0;i<I;i++){
                 w[i]+=learningSignal*x[p][i];
             }
-            printf("Error in the %d-th learning cycle=%f\n",q,Error);
+            //printf("Error in the %d-th learning cycle=%f\n",q,Error);
         } 
     }
     PrintResult();
@@ -76,7 +78,11 @@ void FindOutput(int p){
   double temp=0;
 
   for(i=0;i<I;i++) temp += w[i]*x[p][i];
-  o = sigmoid(temp);
+   if(temp>0){
+      o=1.0;
+    }else{
+      o=-1.0;
+    }
 }
 
 /*************************************************************/
@@ -99,10 +105,8 @@ void PrintResult(void){
       u+=x[i][j]*w[j];
     }
     printf(") ");
-    if(u>0){
-      printf("f(u)=1\n");
-    }else{
-      printf("f(u)=0\n");
-    }
+    
+    FindOutput(i);
+    printf("f(u)=%f\n",o);
   }
 }

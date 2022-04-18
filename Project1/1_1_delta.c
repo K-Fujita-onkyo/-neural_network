@@ -1,20 +1,24 @@
-/*************************************************************/
-/* C-program for delta-learning rule                         */
-/* Learning rule of one neuron                               */
-/*                                                           */
-/* This program is produced by Qiangfu Zhao.                 */
-/* You are free to use it for educational purpose            */
-/*************************************************************/
+/*
+
+m5261108
+KazukiFujita
+
+Team project 1: Part 1
+Delta learning rule
+
+*/
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include <float.h>
 #include <time.h>
 
-#define I             3
-#define n_sample      4
-#define eta           0.5
-#define lambda        1.0
+#define I             3 //the number of data (include dammy input -1)
+#define n_sample      4 //the number of sample
+#define eta           0.5 //learning rate
+#define lambda        1.0 
 #define desired_error 0.01
 #define sigmoid(x)    (2.0/(1.0+exp(-lambda*x))-1.0)
 #define frand()       (rand()%10000/10001.0)
@@ -50,7 +54,7 @@ int main(){
 	      delta=(d[p]-o)*(1-o*o)/2;
 	      w[i]+=eta*delta*x[p][i];
       }
-      printf("Error in the %d-th learning cycle=%f\n",q,Error);
+      //printf("Error in the %d-th learning cycle=%f\n",q,Error);
     } 
   }
   PrintResult();
@@ -98,11 +102,9 @@ void PrintResult(void){
       u+=x[i][j]*w[j];
     }
     printf(") ");
-    if(u>0){
-      printf("f(u)=1\n");
-    }else{
-      printf("f(u)=0\n");
-    }
+
+    FindOutput(i);
+    printf("f(u)=%f\n",o);
   }
 
 }
