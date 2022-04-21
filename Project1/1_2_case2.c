@@ -40,6 +40,7 @@ double o[R];
 void Initialization(void);
 void FindOutput(int);
 void PrintResult(void);
+void PrintDesiredOutput(void);
 
 int main(){
   int    i,j,p,q=0;
@@ -114,7 +115,7 @@ void PrintResult(void){
     printf("Input: (");
     for(j=0;j<R;j++){
       if(j<R-1)printf("%f,",x[i][j]);
-      else printf("%f) --> Output: ",x[i][j]);
+      else printf("%f)   f(u): ",x[i][j]);
     }
 
     FindOutput(i);
@@ -124,6 +125,20 @@ void PrintResult(void){
       if(j<R-1)printf("%f,",o[j]);
       else printf("%f",o[j]);
     }
-    printf(")\n");
+    printf(")   ");
+
+    PrintDesiredOutput();
   }
+}
+
+
+void PrintDesiredOutput(void){
+  printf("Thus, the desired output is ");
+  printf("(");
+    for(int j=0;j<R;j++){
+      if(o[j]>0)printf("1");
+      else printf("-1");
+      if(j<R-1)printf(",");
+    }
+    printf(")\n");
 }
