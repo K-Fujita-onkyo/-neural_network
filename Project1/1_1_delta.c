@@ -38,6 +38,7 @@ double o;
 void Initialization(void);
 void FindOutput(int);
 void PrintResult(void);
+void PrintDesiredOutput(void);
 
 int main(){
   int    i,p,q=0;
@@ -101,10 +102,19 @@ void PrintResult(void){
       if(j!=I-1)printf(",");
       u+=x[i][j]*w[j];
     }
-    printf(") ");
+    printf(")   ");
 
     FindOutput(i);
-    printf("f(u)=%f\n",o);
+    printf("f(u)=%f   ",o);
+
+    PrintDesiredOutput();
+
   }
 
+}
+
+void PrintDesiredOutput(void){
+  printf("The desired output: ");
+  if(o>0) printf("1\n");
+  else printf("-1\n");
 }

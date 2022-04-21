@@ -1,9 +1,9 @@
 
 
 The connection weights of the neurons:
-6.281446 6.277928 9.502837 
+6.281142 6.277623 9.502379 
 
-Input: (0,0,-1) f(u)=-0.999851
-Input: (0,1,-1) f(u)=-0.923522
-Input: (1,0,-1) f(u)=-0.923263
-Input: (1,1,-1) f(u)=0.910128
+Input: (0,0,-1)   f(u)=-0.999851   The desired output: -1
+Input: (0,1,-1)   f(u)=-0.923511   The desired output: -1
+Input: (1,0,-1)   f(u)=-0.923251   The desired output: -1
+Input: (1,1,-1)   f(u)=0.910115   The desired output: 1
