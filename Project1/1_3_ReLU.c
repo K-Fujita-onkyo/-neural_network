@@ -3,7 +3,7 @@
 m5261108
 KazukiFujita
 
-Team project 1: Part 1
+Team project 1: bonus project
 We solved NAND gate using ReLU program
 
 */
