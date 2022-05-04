@@ -165,7 +165,6 @@ void PrintResult(void){
   }
   printf("\n\n");
 
-  printf("Neuron outputs:\n\n");
   for(i=0;i<n_sample;i++){
     printf("Input: (");
     for(j=0;j<I;j++){
