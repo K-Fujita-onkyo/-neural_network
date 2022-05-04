@@ -169,8 +169,8 @@ void PrintResult(void){
   for(i=0;i<n_sample;i++){
     printf("Input: (");
     for(j=0;j<I;j++){
-      if(j<I-1)printf("%f,",x[i][j]);
-      else printf("%f) --> Output: ",x[i][j]);
+      if(j<I-1)printf("%1.0f,",x[i][j]);
+      else printf("%1.0f) --> f(u): ",x[i][j]);
     }
 
     FindHidden(i);
@@ -178,10 +178,19 @@ void PrintResult(void){
 
     printf("(");
     for(j=0;j<K;j++){
-      if(j<I-1)printf("%f,",o[j]);
+      if(j<K-1)printf("%f,",o[j]);
       else printf("%f",o[j]);
     }
-    printf(")\n");
+    printf(")  ");
+
+    printf("  Thus, desired output is ");
+
+    for(j=0;j<K;j++){
+          if(o[j]>0.5)printf("1");
+          else printf("0");
+    }
+       printf(".\n ");
+    
   }
 
 
