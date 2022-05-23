@@ -140,7 +140,7 @@ void InitializeWeight(){
 		normalize = 0;
 
 		for (i = 0; i < I; i++){
-			w[m][i] = (double)(rand() %10001)/10000.0 -0.5;
+			w[m][i] = (double)(rand() %10001)/10000.0;
 			normalize += w[m][i] * w[m][i];
 		}
 		normalize = sqrt(normalize); //geometric mean
