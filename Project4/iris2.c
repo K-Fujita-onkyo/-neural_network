@@ -7,7 +7,7 @@ Kazuki Fujita: m5261108
 #include <math.h>
 
 #define I 4
-#define M 3
+#define M 150
 #define P 150
 #define alpha 0.1
 #define n_update 20
