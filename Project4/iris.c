@@ -25,8 +25,8 @@ Kazuki Fujita: m5261108
 #define  I             4
 #define  M             3
 #define  P             150
-#define  alpha         0.1
-#define  n_update      100
+#define  alpha         0.5
+#define  n_update      4
 
 void PrintResult(int);
 void InitializeWeight();
@@ -82,7 +82,7 @@ int main(){
 			//Update the weight of the winner
 
 		    //printf("winner:%d\n",m0);
-			for (i = 0; i < I; i++) w[m0][i] += alpha * (x[p][i] - w[m0][i]);
+			for (i = 0; i < I; i++) w[m0][i] -= alpha * (x[p][i] - w[m0][i]);
 
 			norm = 0;
 
@@ -149,3 +149,4 @@ void InitializeWeight(){
 		}
 	}
 }
+

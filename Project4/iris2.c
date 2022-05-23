@@ -10,7 +10,7 @@ Kazuki Fujita: m5261108
 #define M 3
 #define P 150
 #define alpha 0.1
-#define n_update 100
+#define n_update 20
 #define INFTY 999999
 
 void PrintResult(int);
@@ -38,6 +38,7 @@ int main(){
 		}
 	}
 
+	//Step 1
 	//Initiarize weight
 	InitializeWeight();
 	PrintResult(0);
@@ -47,28 +48,26 @@ int main(){
 	for (q = 0; q < n_update; q++){
 		for (p = 0; p < P; p++){
 			s0 = INFTY;
+
+			//Step 2
+			//Find the winner
+
 			for (m = 0; m < M; m++){
 				s = 0;
-				for (i = 0; i < I; i++) s += fabs(x[p][i]-w[m][i]);
+				for (i = 0; i < I; i++) s += pow(x[p][i]-w[m][i],2.0);
+				s=sqrt(s);
+				//Find the smallest error.
 				if (s < s0){
 					s0 = s;
 					m0 = m;
 				}
 			}
+
+			//Step 3
 			//Update the weight of the winner
-
-		    //printf("winner:%d\n",m0);
-			for (i = 0; i < I; i++) w[m0][i] += alpha * (x[p][i] - w[m0][i]);
-
-			// norm = 0;
-
-			// for (i = 0; i < I; i++) norm += w[m0][i] * w[m0][i];
-
-			// norm = sqrt(norm);
-
-			// for (i = 0; i < I; i++){
-			// 	w[m0][i] /= norm;
-			// }
+			for (i = 0; i < I; i++) {
+				w[m0][i] += alpha * (x[p][i] - w[m0][i]);
+			}
 		}
 		PrintResult(q);
 	}
