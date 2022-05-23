@@ -100,8 +100,7 @@ void Store_Pattern()
     for (j = 0; j < n_neuron; j++)
     {
       w[i][j] = 0;
-      for (k = 0; k < n_pattern; k++)
-        w[i][j] += pattern[k][i] * pattern[k][j];
+      for (k = 0; k < n_pattern; k++) w[i][j] += pattern[k][i] * pattern[k][j];
       w[i][j] /= (double)n_pattern;
     }
     w[i][i] = 0;
