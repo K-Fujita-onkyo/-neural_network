@@ -20,8 +20,8 @@
 
 #define  I             5
 #define  P             32
-#define  M1            11
-#define  M2            11
+#define  M1            7
+#define  M2            10
 #define  N             (M1*M2)
 
 #define  frand()       (rand()%10000/10001.0)
